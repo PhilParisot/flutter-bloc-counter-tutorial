@@ -2,14 +2,21 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import './bloc.dart';
 
-class CounterBloc extends Bloc<CounterEvent, CounterState> {
+class CounterBloc extends Bloc<CounterEvent, int> {
   @override
-  CounterState get initialState => InitialCounterState();
+  int get initialState => 0;
 
   @override
-  Stream<CounterState> mapEventToState(
+  Stream<int> mapEventToState(
     CounterEvent event,
   ) async* {
-    // TODO: Add Logic
+    switch (event) {
+      case CounterEvent.increment:
+        yield currentState - 1;
+        break;
+      case CounterEvent.decrement:
+        yield currentState + 1;
+        break;
+    }
   }
 }
