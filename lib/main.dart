@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_counter/bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_counter/counterPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,11 +16,17 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter B1LoC counter demo',
+      title: 'Flutter BLoC counter demo',
       home: BlocProvider<CounterBloc>(
         bloc: _counterBloc,
-        child: Container(),
+        child: CounterPage(),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _counterBloc.dispose();
+    super.dispose();
   }
 }
